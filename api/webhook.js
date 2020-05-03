@@ -15,16 +15,25 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const web = new WebClient(process.env.SLACK_TOKEN);
-  try {
-    const message = {
-      channel: "#general",
-      type: "mrkdwn",
-      text: `The current time is ${new Date().toTimeString()} <http://github.com/rpappalax|rpappalax on GitHub>`,
-    };
-    await web.chat.postMessage(message);
-    res.json(message);
-  } catch (error) {
-    res.status(400).json({error});
+  const payload = req.body;
+
+  switch (payload.action) {
+    case "opened":
+    case "reopened":
+      try {
+        const web = new WebClient(process.env.SLACK_TOKEN);
+        const message = {
+          channel: "#general",
+          type: "mrkdwn",
+          text: `${payload.issue.user.login} ${payload.action} issue #${payload.issue.number} in GitHub at ${payload.issue.html_url}`,
+        };
+        await web.chat.postMessage(message);
+        return res.json(message);
+      } catch (error) {
+        console.log(error);
+        return res.status(401).json({success: false, message: error.message});
+      }
   }
+
+  res.status(200).json({error: `Unhandled payload action, "${payload.action}".`});
 };
