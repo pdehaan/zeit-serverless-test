@@ -1,0 +1,15 @@
+{
+  "name": "zeit-serverless-test",
+  "version": "1.0.0",
+  "description": "This service is currently deployed to <https://zeit-serverless-test.now.sh/api/webhook> and should respond to GET and POST requests. Although we can probably code in logic where the webhook ignores anything that isn't a post and possibly if it isn't explicitly a JSON payload from GitHub servers and the secret SHAs align in the stars.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Peter deHaan <peter@deseloper.com> (https://about.me/peterdehaan)",
+  "license": "MPL-2.0",
+  "dependencies": {
+    "@slack/web-api": "^5.8.1"
+  }
+}
