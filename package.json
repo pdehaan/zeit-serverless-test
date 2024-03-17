@@ -7,7 +7,7 @@
     "url": "https://github.com/pdehaan/zeit-serverless-test/issues"
   },
   "dependencies": {
-    "@slack/web-api": "^5.15.0"
+    "@slack/web-api": "^7.0.2"
   },
   "devDependencies": {},
   "homepage": "https://github.com/pdehaan/zeit-serverless-test#readme",
